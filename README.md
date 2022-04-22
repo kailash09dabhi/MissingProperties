@@ -1,10 +1,12 @@
 # MissingProperties
 
-To install this package run command:
+__To install this package run command:
 
     npm run missingproperties
     
-const input = {
+__Sample api response    
+
+`const input = {
   articles: {
     page: {
       details: {
@@ -36,13 +38,13 @@ const input = {
     { user: 'fred', age: 40, active: false },
     { age: 37, active: true },
   ],
-}
+}`
 
 To identify the missing properties which is required to be present in response,
 
 you can use run the below command:
 
-console.log(
+`console.log(
   JSON.stringify(
     getAndUpdateMissingDataPropertyOfObjectWithDefaultValue(input, [
       { path: 'friends[0].user', defaultValue: 'Kailas', logPropertyPath: 'friends[0].age' },
@@ -54,11 +56,11 @@ console.log(
       },
     ]),
   ),
-)
+)`
 
 Response would be like:
 
-{
+`{
   "missingData": {
     "friends[0].user": [
       {
@@ -152,17 +154,17 @@ Response would be like:
       }
     ]
   }
-}
+}`
 
 
-Method 'getAndUpdateMissingDataPropertyOfObjectWithDefaultValue' provides the missing properties array with information of missing properties 
+Method __getAndUpdateMissingDataPropertyOfObjectWithDefaultValue__ provides the missing properties array with information of missing properties 
 so it can be loggable and also provides the response with defaultValue.
 
 It accepts two parameter ie. 
 1. input (json response)
 2. array of object of required properties 
-   a. path: of required property
-   b. defaultValue: Replacable default value when the above required property is missing
-   c. logPropertyPath: Property path which will help to identify the missing property for logging utilities
+   __a. path:__ of required property
+   __b. defaultValue:__ Replacable default value when the above required property is missing
+   __c. logPropertyPath:__ Property path which will help to identify the missing property for logging utilities
 
 
