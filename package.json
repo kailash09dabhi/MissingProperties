@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "missingproperties",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "description": "Find missing properties with log identifier from json response and update it with default value",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,10 @@
   ],
   "author": "Kailash Dabhi <kailash09dabhi@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kailash09dabhi/MissingProperties.git"
+  },
   "dependencies": {
     "lodash": "^4.17.21"
   }

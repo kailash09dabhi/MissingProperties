@@ -1,11 +1,12 @@
-import getAndUpdateMissingDataPropertyOfObjectWithDefaultValue from 'missingproperties'
+import getMissingDataInfoWithPatchedObject from 'missingproperties'
 
-const user = {
+// Example USAGE
+export const response = {
   articles: {
     page: {
       details: {
-        description: 'This is description',
-        totalChar: 199,
+          // description: 'This is description',
+          totalChar: 199,
       },
     },
   },
@@ -13,17 +14,17 @@ const user = {
     {
       name: 'Dogs',
       breeds: [
-        { name: 'Doggy One', age: 10, active: true },
-        { name: 'Doggy Two', age: 20, active: false },
-        { age: 37, active: true, id: 123 },
+        { name: 'Doggy One', age: 10, location: 'panama' },
+        { name: 'Doggy Two', age: 20, location: 'america' },
+        { age: 30, location: 'cyprus' },
       ],
     },
     {
       name: 'Bird',
       breeds: [
-        { name: 'Bird One', age: 10, active: true },
-        { name: 'Bird Two', age: 20, active: false },
-        { age: 247, active: true },
+        { age: 33, location: 'bulgaria' },
+        { name: 'Bird One', age: 11, location: 'india' },
+        { name: 'Bird Two', age: 22, location: 'japan' },
       ],
     },
   ],
@@ -33,17 +34,11 @@ const user = {
     { age: 37, active: true },
   ],
 }
-
 console.log(
   JSON.stringify(
-    getAndUpdateMissingDataPropertyOfObjectWithDefaultValue(user, [
-      { path: 'friends[0].user', defaultValue: 'Kailas', logPropertyPath: 'friends[0].age' },
-      { path: 'animals[0].breeds[0].name', defaultValue: 'Animal', logPropertyPath: 'animals[0].breeds[0].age' },
-      {
-        path: 'articles.page.details.pageName',
-        defaultValue: 'Default Page',
-        logPropertyPath: 'articles.page.details.pageName',
-      },
-    ]),
-  ),
+    getMissingDataInfoWithPatchedObject(response,[
+      {path: 'animals[].breeds[].name',defaultValue:'INTELLIGENT ANIMAL',defaultValuePath:'animals[].breeds[].age',logKeyPath:'animals[].breeds[].location'},
+      {path: 'articles.page.details.description',defaultValue:'INDIA',defaultValuePath:'articles.page.details.totalChar',logKeyPath:'articles.page.details.totalChar'},
+    ])
+  )
 )
