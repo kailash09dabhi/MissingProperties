@@ -50,6 +50,7 @@ you can use run the below command:
     ])
 
 __Output will be:__
+
         {
           "patchedObject": {
             "articles": {
@@ -114,6 +115,7 @@ so it can be loggable and also provides the response with defaultValue.
 It accepts two parameter ie. 
 1. input (json response)
 2. array of object of required properties
+
    __a. path:__ 
         path of required property
    __b. defaultValue:__ 
