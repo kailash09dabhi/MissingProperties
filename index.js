@@ -28,7 +28,7 @@ const getMissingDataInfo = ({object, elements, path, defaultValue,defaultValuePa
   }else{
     newPath = `${path}.${firstElement.name}`
   }
-  const data = get(object,newPath)
+  const data = newPath === '' ? object: get(object, newPath)
 
   if(elements.length === 1){ 
     // traversal done
@@ -79,6 +79,9 @@ const getMissingDataInfoWithPatchedObject = (object, paths) => {
         findMissingData({object:patchedObject,path: pathInfo.path,defaultValue:pathInfo.defaultValue,defaultValuePath:pathInfo.defaultValuePath,logKeyPath:pathInfo.logKeyPath})
        ),
   )
+  Object.keys(missingData).forEach(key => {
+    if (Array.isArray(missingData[key]) && !missingData[key].length) delete missingData[key]
+  })
   return { missingData, patchedObject }
 }
 
@@ -122,4 +125,5 @@ export const response = {
 console.log(JSON.stringify(getMissingDataInfoWithPatchedObject(response,[
   {path: 'animals[].breeds[].name',defaultValue:'INTELLIGENT ANIMAL',defaultValuePath:'animals[].breeds[].age',logKeyPath:'animals[].breeds[].location'},
   {path: 'articles.page.details.description',defaultValue:'INDIA',defaultValuePath:'articles.page.details.totalChar',logKeyPath:'articles.page.details.totalChar'},
+  // {path: '[].SmallDescription',defaultValue:'INTELLIGENT ANIMAL',defaultValuePath:'[].MenuItemId',logKeyPath:'[].MenuItemId'},
 ])))
